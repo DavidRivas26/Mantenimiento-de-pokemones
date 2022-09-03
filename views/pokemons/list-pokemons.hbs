@@ -1,0 +1,53 @@
+<section class="py-5 text-center container">
+  <div class="row py-lg-5">
+    <div class="col-lg-6 col-md-8 mx-auto">
+      <h1 class="fw-light">Pokemones App</h1>
+      <p class="lead text-muted">Una aplicacion donde todos los pokemones son incluidos!!</p>
+      <p>
+        <a href="/create-pokemons" class="btn btn-primary my-2">Crear nuevo pokemon</a>
+        <a href="/create-types" class="btn btn-secondary my-2">Crear nuevo tipo</a>
+        <a href="/create-regions" class="btn btn-secondary my-2">Crear nueva region</a>
+      </p>
+    </div>
+  </div>
+</section>
+
+<div class="album py-5 bg-light">
+  <div class="container">
+
+    <div class="row">
+
+      {{#if hasPokemons}}
+
+        {{#each pokemons as |pokemon|}}
+
+          <div class="card col-md-3">
+            <img src="{{pokemon.image}}" class="card-img-top" alt="pokemon">
+            <div class="card-body">
+              <h5 class="card-title">{{pokemon.name}}</h5>
+              <h6 class="card-subtitle mb-2 text-muted">{{pokemon.type.dataValues.name}}</h6>
+              <h6 class="card-subtitle mb-2 text-muted">{{pokemon.region.dataValues.name}}</h6>
+
+              <form id="form-delete" class="form-inline" action="/delete-pokemons" method="post">
+                <input type="hidden" name="pokemonsId" value="{{pokemon.id}}" />
+                <a
+                href="/edit-pokemons/{{pokemon.id}}?edit=true"
+                class="btn btn-warning"
+                >Editar</a>
+                <button type="submit" id="delete-pokemons" class="btn btn-danger">Eliminar</button>
+
+              </form>
+            </div>
+          </div>
+
+        {{/each}}
+
+      {{else}}
+
+        <h1>no hay pokemones creados</h1>
+
+      {{/if}}
+
+    </div>
+  </div>
+</div>

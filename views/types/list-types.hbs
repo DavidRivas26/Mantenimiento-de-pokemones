@@ -1,0 +1,48 @@
+<section class="py-5 text-center container">
+  <div class="row py-lg-5">
+    <div class="col-lg-6 col-md-8 mx-auto">
+      <h1 class="fw-light">Pokemones App</h1>
+      <p class="lead text-muted">Una aplicacion donde todos los pokemones son incluidos!!</p>
+      <p>
+        <a href="/create-types" class="btn btn-secondary my-2">Crear nuevo tipo</a>
+      </p>
+    </div>
+  </div>
+</section>
+
+<div class="album py-5 bg-light">
+  <div class="container">
+
+    <div class="row">
+
+      {{#if hasTypes}}
+
+        {{#each types as |type|}}
+
+          <div class="card col-md-3">
+            <div class="card-body">
+              <h5 class="card-title">{{type.name}}</h5>
+
+              <form class="form-inline" action="/delete-types" method="post">
+                <input type="hidden" name="typesId" value="{{type.id}}" />
+                <a
+                href="/edit-types/{{type.id}}?edit=true"
+                class="btn btn-warning"
+                >Editar</a>
+                
+                <button type="submit" class="btn btn-danger">Eliminar</button>
+
+              </form>
+            </div>
+          </div>
+
+        {{/each}}
+      {{else}}
+
+        <h1>no hay tipos creados</h1>
+
+      {{/if}}
+
+    </div>
+  </div>
+</div>

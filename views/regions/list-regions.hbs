@@ -1,0 +1,48 @@
+<section class="py-5 text-center container">
+  <div class="row py-lg-5">
+    <div class="col-lg-6 col-md-8 mx-auto">
+      <h1 class="fw-light">Pokemones App</h1>
+      <p class="lead text-muted">Una aplicacion donde todos los pokemones son incluidos!!</p>
+      <p>
+        <a href="/create-regions" class="btn btn-secondary my-2">Crear nueva region</a>
+      </p>
+    </div>
+  </div>
+</section>
+
+<div class="album py-5 bg-light">
+  <div class="container">
+
+    <div class="row">
+
+      {{#if hasRegions}}
+
+        {{#each regions as |region|}}
+
+          <div class="card col-md-3">
+            <div class="card-body">
+              <h5 class="card-title">{{region.name}}</h5>
+
+              <form class="form-inline" action="/delete-regions" method="post">
+                <input type="hidden" name="regionsId" value="{{region.id}}" />
+                <a
+                href="/edit-regions/{{region.id}}?edit=true"
+                class="btn btn-warning"
+                >Editar</a>
+
+                <button type="submit" class="btn btn-danger">Eliminar</button>
+
+              </form>
+            </div>
+          </div>
+
+        {{/each}}
+      {{else}}
+
+        <h1>no hay regiones creadas</h1>
+
+      {{/if}}
+
+    </div>
+  </div>
+</div>
